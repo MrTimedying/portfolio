@@ -14,12 +14,21 @@ const fulcrum = {
   version: "0.7.0",    
 };
 
+const cornea = {
+  title: "Cornea",
+  body: "Cornea is an application that is leveraging the amazing Google Mediapipe open source framework to build a real time movement assessment and analysis tool. Several analysis options, a gait analysis functionality that is suitable enough for the work on the field. From posture analysis, to movement form execution assessment, cornea is going to implement as many tools as possible and all evidence based and up to date withs standards.",
+  language: "Python",
+  backgroundColor: "#3572A5",
+  status: "Alpha",
+  version: "0.1.0",    
+};
+
 const Home = () => (
   <>
     <NavMenu />
     <main
       style={{ background: "#fffff8" }}
-      className="max-w-3xl mx-auto flex flex-col items-center justify-center min-h-[70vh] mb-24 px-6 pb-12 "
+      className="max-w-4xl mx-auto flex flex-col items-center justify-center min-h-[70vh] mb-24 px-6 pb-12 "
     >
       <div id="main_content" className=" text-black grid grid-cols-2 gap-4">
         <div id="avatar" className="col-span-1 text-center flex justify-center items-center my-6">
@@ -30,7 +39,7 @@ const Home = () => (
           />
         </div>
         <div id="stuff" className="col-span-1 text-center">
-          <div id="presentation" className="text-center mb-6">
+          <div id="presentation" className="text-sm my-6">
             <p>Hello, this is Antonio.</p>
             <p>
               I'm a kinesiologist, passionate about AI, movement sciences and
@@ -39,9 +48,10 @@ const Home = () => (
           </div>
           <div
             id="projects_cards"
-            className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full"
+            className="flex flex-col items-center gap-2 w-full"
           >
             <ProjectCard link={"https://github.com/MrTimedying/fulcrum"} data={fulcrum} />
+            <ProjectCard link={"https://github.com/MrTimedying/cornea"} data={cornea} />
           </div>
         </div>
       </div>

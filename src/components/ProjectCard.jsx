@@ -5,7 +5,7 @@ const ProjectCard = ({ data, link }) => {
   return (
     <div
       id="card_container"
-      className="text-center justify-self-start font-xs bg-[#373f51] border-[#e07a5f] border-2 text-[#ebcfb2] rounded-lg shadow-lg shadow-black-500/50 p-5 m-5"
+      className="text-center w-96 justify-self-start font-xs bg-[#373f51] border-[#e07a5f] border-2 text-[#ebcfb2] rounded-lg shadow-lg shadow-black-500/50 p-5"
     >
       {/* Title row */}
       <div
