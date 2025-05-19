@@ -95,7 +95,7 @@ const Blog = () => {
     <>
       <NavMenu />
       <main style={{ background: "#fffff8" }} className="max-w-3xl mt-20 mx-auto flex flex-col items-left justify-start min-h-[70vh] mb-24 px-4 sm:px-6 pb-12">
-        <h1 className="text-4xl text-black mb-8">#blog</h1>
+        <h1 className="text-4xl text-black mb-8">#fulcrum</h1>
         {content}
       </main>
       <Footer />
