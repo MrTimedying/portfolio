@@ -20,7 +20,8 @@ const Fulcrum = () => {
 
       <div className="text-black h-full flex flex-row gap-5 items-center justify-center w-4/5 mx-auto">
         <div label="fulcrum-content" className="w-1/2"><h1 className="text-3xl font-light"> Fulcrum App</h1>
-        <p>Fulcrum is an app that allows easy patients management in the field of movement sciences. The application spans from physical education to physical therapy. It allows to create interventions that are structured following up to standards framework with regards to periodization, time management and activities structure. The alpha version is fully equipped with multiple interventions creation, templating to speed up your workflow and multiple patients management.</p></div>
+        <p>Fulcrum is a solution for professionals in the field of movement sciences. It's an inclusive people management solution, which empowers the users with several tools to overcharge their workflow. Fulcrum allows the creation of individual ICF standard profiles and interventions for patients with the two built in React Flow based editors. The flow diagram approach allows for fast overviews, hierarchical and evidence based organization of interventions, testing and profiling.
+        The current Alpha version allows multiple interventions for each patient, templating for fast designing and planning, and modular composition of single activities within a discipline agnostic frame.</p></div>
         <div label="fulcrum-image"><img src={FulcrumUI} className="shadow-lg shadow-gray-800" style={{width: '100%'}} alt="Fulcrum UI" /></div>
       </div>
 
