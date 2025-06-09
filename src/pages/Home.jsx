@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "motion/react";
 import NavMenu from "../components/NavMenu";
 import Footer from "../components/Footer";
 import "../App.css";
@@ -11,7 +12,7 @@ const fulcrum = {
   language: "Javascript",
   backgroundColor: "#f7df1e",
   status: "Alpha",
-  version: "0.11.0",    
+  version: "v1.0.0",    
 };
 
 const cornea = {
@@ -23,41 +24,93 @@ const cornea = {
   version: "0.1.0",    
 };
 
+const auditorHelper = {
+  title: "Auditor Helper",
+  body: "A desktop application to help auditors track and analyze their auditing tasks across different weeks.",
+  language: "Python",
+  backgroundColor: "#607D8B", // A shade of grey
+  status: "Alpha",
+  version: "v0.16.8-beta",
+};
+
 const Home = () => (
-  <>
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    transition={{ duration: 0.5 }}
+  >
     <NavMenu />
-    <main
+    <motion.main
       style={{ background: "#fffff8" }}
       className="max-w-4xl mx-auto flex flex-col items-center justify-center min-h-[70vh] mb-24 px-6 pb-12 "
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: 0.2 }}
     >
       <div id="main_content" className=" text-black grid grid-cols-2 gap-4">
-        <div id="avatar" className="col-span-1 text-center flex justify-center items-center my-6">
+        <motion.div 
+          id="avatar" 
+          className="col-span-1 text-center flex justify-center items-center my-6"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          whileHover={{ scale: 1.05 }}
+        >
           <img
             src={selfImg}
             alt="Antonio's avatar"
             className="w-64 h-64 rounded-full shadow-lg object-cover border-4 border-[#e07a5f] bg-white dark:bg-zinc-800"
           />
-        </div>
+        </motion.div>
         <div id="stuff" className="col-span-1 text-center">
-          <div id="presentation" className="text-sm my-6">
+          <motion.div 
+            id="presentation" 
+            className="text-sm my-6"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+          >
             <p>Hello, this is Antonio.</p>
             <p>
               I'm a kinesiologist, passionate about AI, movement sciences and
               coding. At the moment is all I have for you.
             </p>
-          </div>
-          <div
+          </motion.div>
+          <motion.div
             id="projects_cards"
             className="flex flex-col items-center gap-2 w-full"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
           >
-            <ProjectCard link={"https://github.com/MrTimedying/fulcrum"} data={fulcrum} />
-            <ProjectCard link={"https://github.com/MrTimedying/cornea"} data={cornea} />
-          </div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 1.0 }}
+            >
+              <ProjectCard link={"https://github.com/MrTimedying/fulcrum"} data={fulcrum} />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 1.2 }}
+            >
+              <ProjectCard link={"https://github.com/MrTimedying/cornea"} data={cornea} />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 1.4 }}
+            >
+              <ProjectCard link={"https://github.com/MrTimedying/auditor_helper"} data={auditorHelper} />
+            </motion.div>
+          </motion.div>
         </div>
       </div>
-    </main>
+    </motion.main>
     <Footer />
-  </>
+  </motion.div>
 );
 
 export default Home;
