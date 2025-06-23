@@ -1,0 +1,2 @@
+import{i as t}from"./index-CNNaOtIm.js";import"./vendor-BtP0CW_r.js";import"./charts-C8eqiMuh.js";import"./ui-c1iJaJ-1.js";async function n(e={}){return typeof e=="object"&&Object.freeze(e),await t("plugin:dialog|open",{options:e})}async function o(e={}){return typeof e=="object"&&Object.freeze(e),await t("plugin:dialog|save",{options:e})}export{n as open,o as save};
+//# sourceMappingURL=index-3eJluehb.js.map

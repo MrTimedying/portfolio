@@ -20,10 +20,8 @@ const useGitHubCommits = () => {
         `https://api.github.com/repos/${owner}/${repo}/commits?since=${since}&per_page=100`,
         {
           headers: {
-            'Accept': 'application/vnd.github.v3+json',
-            ...(import.meta.env.VITE_GIT_HUB && {
-              'Authorization': `token ${import.meta.env.VITE_GIT_HUB}`
-            })
+            'Accept': 'application/vnd.github.v3+json'
+            // Note: No authorization token for public repos
           }
         }
       );
