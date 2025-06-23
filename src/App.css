@@ -4,4 +4,18 @@
   background-color: #fffff8 ;
 }
 
+/* Logo ECG Animation Styles */
+.logo-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-width: 200px; /* Ensure space for ECG line */
+  overflow: visible; /* Allow ECG line to extend beyond bounds */
+}
+
+/* Ensure ECG line doesn't interfere with layout */
+.logo-container svg:first-child {
+  pointer-events: none;
+}
+
 

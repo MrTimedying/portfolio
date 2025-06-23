@@ -8,6 +8,7 @@ const navLinks = [
   { to: "/", label: ".home" },
   { to: "/blog", label: ".blog" },
   { to: "/fulcrum", label: ".fulcrum" },
+  { to: "/statdash", label: ".statdash" },
 ];
 
 export default function NavMenu() {
@@ -15,22 +16,14 @@ export default function NavMenu() {
 
   return (
     <motion.nav 
-      style={{ background: "#fffff8" }} 
-      className="max-w-3xl mx-auto flex flex-col items-center justify-center mt-10 px-6"
+      style={{ background: "transparent" }} 
+      className="max-w-3xl mx-auto flex flex-col items-center justify-center mt-10 px-6 relative"
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
     >
       <div className="max-w-5xl mx-auto px-4 md:px-8 flex justify-between items-center h-16">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          whileHover={{ 
-            scale: 1.05,
-            transition: { duration: 0.2 }
-          }}
-        >
+        <div className="logo-container">
           {location.pathname === "/fulcrum" ? (
             <motion.img 
               className="opacity-100 transition-opacity ease-in-out duration-1000" 
@@ -41,15 +34,9 @@ export default function NavMenu() {
               transition={{ duration: 0.8, delay: 0.3 }}
             />
           ) : (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
-              <Logo />
-            </motion.div>
+            <Logo animate={true} />
           )}
-        </motion.div>
+        </div>
         <motion.ul 
           className="flex ml-50"
           initial={{ opacity: 0, x: 20 }}
@@ -83,16 +70,16 @@ export default function NavMenu() {
                     animate={
                       location.pathname === link.to
                         ? { 
-                            color: "#e07a5f",
-                            fontWeight: "bold",
-                            textDecoration: "underline"
+                            color: "#e07a5f"
                           }
                         : { 
-                            color: "#000000",
-                            fontWeight: "normal",
-                            textDecoration: "none"
+                            color: "#000000"
                           }
                     }
+                    style={{
+                      fontWeight: location.pathname === link.to ? "bold" : "normal",
+                      textDecoration: location.pathname === link.to ? "underline" : "none"
+                    }}
                     transition={{ duration: 0.3 }}
                   >
                     {link.label}

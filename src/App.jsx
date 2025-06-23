@@ -4,7 +4,9 @@ import Home from "./pages/Home";
 import Blog from "./pages/Blog";
 import SinglePost from "./pages/SinglePost";
 import Fulcrum from "./pages/Fulcrum";
+import StatDash from "./pages/StatDash";
 import HumanInTheLoopPost from "./pages/HumanInTheLoopPost";
+
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -21,7 +23,9 @@ function AnimatedRoutes() {
         <Route path="/blog" element={<Blog />}/>
         <Route path="/blog/:slug" element={<SinglePost />} />
         <Route path="/fulcrum" element={<Fulcrum />}/>
+        <Route path="/statdash" element={<StatDash />}/>
         <Route path="/blog/human-in-the-loop" element={<HumanInTheLoopPost />} />
+
       </Routes>
     </AnimatePresence>
   );
