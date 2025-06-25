@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import NavMenu from '../components/NavMenu'; // Assuming NavMenu component is correctly imported
 import Footer from '../components/Footer';
 import FulcrumUI from '../assets/fulcrumUI.png'; // Assuming Footer component is correctly imported
+import MedicalBackground from '../components/MedicalBackground';
 
 const Fulcrum = () => {
   return (
@@ -14,6 +15,7 @@ const Fulcrum = () => {
       transition={{ duration: 0.5 }}
     >
         <NavMenu />
+        <MedicalBackground userActivity={'idle'} />
 
       <motion.div 
         className="text-black h-full flex flex-row gap-5 items-center justify-center w-4/5 mx-auto"

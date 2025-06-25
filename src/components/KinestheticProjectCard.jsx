@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "motion/react";
-import { GithubFill } from "./icons";
+import { GithubFill, ReactJs, Electron, Tauri, Python } from "./icons";
+
+const technologyIcons = {
+  react: <ReactJs />,
+  electron: <Electron />,
+  tauri: <Tauri />,
+  pyside: <Python />,
+  python: <Python />,
+};
 
 const KinestheticProjectCard = ({ data, link, index = 0, onHover, onLeave }) => {
   const [energyLevel, setEnergyLevel] = useState(0);
@@ -233,59 +241,26 @@ const KinestheticProjectCard = ({ data, link, index = 0, onHover, onLeave }) => 
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.3 }}
       >
-        <motion.span 
-          className="text-sm flex items-center"
-          whileHover={{ scale: 1.05 }}
-        >
-          <motion.span
-            className="inline-block h-3 w-3 rounded-full mr-2 border border-[#ebcfb2]"
-            style={{
-              backgroundColor: data.backgroundColor || "#ebcfb2",
-            }}
-            animate={{ 
-              scale: [1, 1.2, 1],
-              boxShadow: [
-                `0 0 0 0 ${data.backgroundColor || "#ebcfb2"}`,
-                `0 0 0 4px ${data.backgroundColor || "#ebcfb2"}22`,
-                `0 0 0 0 ${data.backgroundColor || "#ebcfb2"}`,
-              ]
-            }}
-            transition={{ 
-              duration: 2 + index * 0.3,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
-          {data.language}
-        </motion.span>
-        
-        <div className="flex gap-2">
-          <motion.span 
-            className="px-2 py-0.5 rounded bg-[#e07a5f] text-[#373f51]"
-            whileHover={{ 
-              scale: 1.1,
-              backgroundColor: "#ebcfb2",
-              transition: { duration: 0.2 }
-            }}
-            animate={{
-              // Pulse with energy flow
-              boxShadow: `0 0 ${energyIntensity * 10}px rgba(224, 122, 95, ${energyIntensity * 0.5})`,
-            }}
-          >
-            {data.status}
-          </motion.span>
-          <motion.span 
-            className="px-2 py-0.5 rounded bg-[#ebcfb2] text-[#373f51]"
-            whileHover={{ 
-              scale: 1.1,
-              backgroundColor: "#e07a5f",
-              color: "#ebcfb2",
-              transition: { duration: 0.2 }
-            }}
-          >
-            {data.version}
-          </motion.span>
+        <div className="flex items-center gap-2">
+          {data.technologies?.map((tech) => (
+            <motion.div
+              key={tech}
+              className="w-6 h-6 flex items-center justify-center rounded-full bg-gray-700"
+              whileHover={{ scale: 1.2, rotate: 15 }}
+            >
+              {technologyIcons[tech.toLowerCase()] || tech}
+            </motion.div>
+          ))}
         </div>
+        <motion.div
+          className="text-xs font-mono"
+          whileHover={{
+            color: "#e07a5f",
+            scale: 1.05,
+          }}
+        >
+          {data.version || "v0.0.0"}
+        </motion.div>
       </motion.div>
 
       {/* Activation feedback */}

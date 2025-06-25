@@ -5,6 +5,7 @@ import NavMenu from '../components/NavMenu';
 import Footer from '../components/Footer';
 import { urlFor } from '../sanityClient';
 import useBlogStore from '../store/blogStore';
+import MedicalBackground from '../components/MedicalBackground';
 
 const Blog = () => {
   const navigate = useNavigate();
@@ -207,6 +208,7 @@ const Blog = () => {
       transition={{ duration: 0.5 }}
     >
       <NavMenu />
+      <MedicalBackground userActivity={'idle'} />
       <motion.main 
         style={{ background: "#fffff8" }} 
         className="max-w-3xl mt-20 mx-auto flex flex-col items-left justify-start min-h-[70vh] mb-24 px-4 sm:px-6 pb-12"

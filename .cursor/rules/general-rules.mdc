@@ -1,0 +1,10 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Must do
+
+1. Always update the changeslog document after important fixes, patches or updates to the code;
+
+2. Never run the development server, run build, but ask the user to do that and what to look for;

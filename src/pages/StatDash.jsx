@@ -1,12 +1,17 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import NavMenu from '../components/NavMenu';
 
 const StatDash = () => {
-  // Instant redirect to StatDash app with correct base path
-  useEffect(() => {
-    window.location.href = '/portfolio/statdash/index.html';
-  }, []);
-
-  return null; // Nothing to render, instant redirect
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden' }}>
+      <NavMenu />
+      <iframe
+        src="/portfolio/statdash/index.html"
+        title="StatDash"
+        style={{ flexGrow: 1, border: 'none', width: '100%', height: '100%' }}
+      />
+    </div>
+  );
 };
 
 export default StatDash; 

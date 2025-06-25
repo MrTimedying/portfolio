@@ -11,7 +11,6 @@ const Logo = ({
   const logoRef = useRef(null);
   const pathRefs = useRef([]);
   const maskRefs = useRef([]);
-  const ecgLineRef = useRef(null);
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -20,22 +19,9 @@ const Logo = ({
     const logo = logoRef.current;
     const paths = pathRefs.current;
     const masks = maskRefs.current;
-    const ecgLine = ecgLineRef.current;
 
     // Path order: 4, 2, 3, 1 (left to right)
     const pathOrder = [3, 1, 2, 0]; // Array indices for paths[4,2,3,1]
-
-    // Set initial state for ECG line
-    gsap.set(ecgLine, {
-      strokeDasharray: function(i, target) {
-        const length = target.getTotalLength();
-        return `${length} ${length}`;
-      },
-      strokeDashoffset: function(i, target) {
-        return target.getTotalLength();
-      },
-      opacity: 1
-    });
 
     // Set initial states for gradient masks - start completely left (hidden)
     gsap.set(masks, {
@@ -47,26 +33,9 @@ const Logo = ({
     // Create timeline
     const tl = gsap.timeline();
 
-    // 1. ECG line draws from left (partial)
-    tl.to(ecgLine, {
-      duration: 0.8, // 🎛️ ECG LINE SPEED - increase for slower ECG drawing
-      strokeDashoffset: 0,
-      ease: "none"
-    })
-    
-    // 2. Brief pause
-    .to({}, { duration: 0.2 }) // 🎛️ PAUSE DURATION - increase for longer pause
-    
-    // 3. Fade out ECG line
-    .to(ecgLine, {
-      duration: 0.3, // 🎛️ ECG FADE SPEED - increase for slower fade
-      opacity: 0,
-      ease: "power2.out"
-    })
-    
     // 🎛️ LOGO DRAWING SPEEDS - increase these durations for slower drawing
-    // 4. Draw logo paths left to right with GRADUAL FILL FROM LEFT TO RIGHT
-    .to(masks[pathOrder[0]], { // Path 4 (leftmost) - gradual left-to-right fill
+    // Draw logo paths left to right with GRADUAL FILL FROM LEFT TO RIGHT
+    tl.to(masks[pathOrder[0]], { // Path 4 (leftmost) - gradual left-to-right fill
       duration: 5, // 🎛️ PATH 4 SPEED (was 0.8) - increase for slower fill
       attr: { width: 300 }, // Expand width to reveal the fill
       ease: "power2.out"
@@ -111,34 +80,13 @@ const Logo = ({
 
     return () => {
       tl.kill();
-      gsap.killTweensOf([logo, ...paths, ...masks, ecgLine]);
+      gsap.killTweensOf([logo, ...paths, ...masks]);
     };
   }, [animate]);
 
   return (
     <div ref={containerRef} className="relative overflow-visible flex items-center">
-      {/* ECG Line - completely separate container to the left */}
-      <div className="relative" style={{ width: width * 0.5, height: height }}>
-        <svg
-          className="absolute pointer-events-none"
-          width={width * 0.5}
-          height={height}
-          viewBox="0 0 122.4 273.1"
-          style={{ zIndex: 1, top: 0, left: 0 }}
-        >
-          <line
-            ref={ecgLineRef}
-            x1="20"
-            y1="136"
-            x2="100"
-            y2="136"
-            stroke="#e07a5f"
-            strokeWidth="3"
-          />
-        </svg>
-      </div>
-
-      {/* Main Logo - separate container to the right */}
+      {/* Main Logo */}
       <div className="relative" style={{ width: width, height: height }}>
         <svg
           ref={logoRef}

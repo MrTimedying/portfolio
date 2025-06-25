@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion } from "motion/react";
 import NavMenu from "../components/NavMenu";
 import Footer from "../components/Footer";
 import BreathingAvatar from "../components/BreathingAvatar";
@@ -7,18 +7,14 @@ import BreathingAvatar from "../components/BreathingAvatar";
 import KinestheticProjectCard from "../components/KinestheticProjectCard";
 import MedicalBackground from "../components/MedicalBackground";
 import { PulsingSubtitle, BalancedText, NeuralText } from "../components/KinestheticTypography";
-import ECGPulse from "../components/ECGPulse";
-import useMovementScroll from "../hooks/useMovementScroll";
-import useGitHubCommits from "../hooks/useGitHubCommits";
 import "../App.css";
 import selfImg from "../assets/self.png";
-import MindActivityDashboard from "../components/MindActivityDashboard";
+import useMovementScroll from "../hooks/useMovementScroll";
 
 const fulcrum = {
   title: "Fulcrum",
   body: "Fulcrum is a management software for experts in the field of movement sciences, such as physical education, adapted physical activity and physical rehabilitation.",
-  language: "Javascript",
-  backgroundColor: "#f7df1e",
+  technologies: ["React", "Electron"],
   status: "Alpha",
   version: "v1.0.0",    
 };
@@ -26,8 +22,7 @@ const fulcrum = {
 const cornea = {
   title: "Cornea",
   body: "Cornea is an application that is leveraging the amazing Google Mediapipe open source framework to build a real time movement assessment and analysis tool. Several analysis options, a gait analysis functionality that is suitable enough for the work on the field. From posture analysis, to movement form execution assessment, cornea is going to implement as many tools as possible and all evidence based and up to date withs standards.",
-  language: "Python",
-  backgroundColor: "#3572A5",
+  technologies: ["Tauri", "React"],
   status: "Alpha",
   version: "0.1.0",    
 };
@@ -35,8 +30,7 @@ const cornea = {
 const auditorHelper = {
   title: "Auditor Helper",
   body: "A desktop application to help auditors track and analyze their auditing tasks across different weeks.",
-  language: "Python",
-  backgroundColor: "#607D8B", // A shade of grey
+  technologies: ["Pyside"],
   status: "Alpha",
   version: "v0.16.8-beta",
 };
@@ -44,8 +38,7 @@ const auditorHelper = {
 const pProject = {
   title: "p-project", 
   body: "Simulations in Python and Jupyter notebooks about p-values and decision making in academia. Statistical dashboard and analytics platform with interactive data visualization.",
-  language: "Python",
-  backgroundColor: "#3776ab", // Python blue
+  technologies: ["Tauri", "React"],
   status: "Production", 
   version: "v1.0.0",
 };
@@ -58,17 +51,11 @@ const Home = () => {
     velocityNormalized 
   } = useMovementScroll();
 
-  // Fetch actual GitHub commit data
-  const { commitCounts, loading, error } = useGitHubCommits();
-
   // Card interaction state management
   const avatarRef = useRef(null);
   const [activeCard, setActiveCard] = useState(null);
-  const [avatarHovered, setAvatarHovered] = useState(false);
   const cardRefs = useRef({});
-  
 
-  
   // User activity tracking for medical background
   const [userActivity, setUserActivity] = useState('idle');
   
@@ -95,36 +82,6 @@ const Home = () => {
       {/* Medical Background with EEG waves and grid */}
       <MedicalBackground userActivity={userActivity} />
       
-      {/* ECG Display - positioned relative to active card */}
-      <AnimatePresence mode="wait">
-        {activeCard !== null && activeCard !== undefined && cardRefs.current[activeCard] && (
-          <ECGPulse 
-            key={`ecg-${activeCard}`}
-            projectType={(() => {
-              switch(activeCard) {
-                case 0: return 'fulcrum';
-                case 1: return 'cornea';
-                case 2: return 'auditor';
-                case 3: return 'pproject';
-                default: return 'fulcrum';
-              }
-            })()} 
-            intensity={1} 
-            isActive={true}
-            cardRef={cardRefs.current[activeCard]}
-            commitCount={(() => {
-              switch(activeCard) {
-                case 0: return commitCounts.fulcrum || 0;
-                case 1: return commitCounts.cornea || 0;
-                case 2: return commitCounts.auditor || 0;
-                case 3: return commitCounts.pproject || 0;
-                default: return 0;
-              }
-            })()}
-          />
-        )}
-      </AnimatePresence>
-      
       <NavMenu />
       <motion.main
         style={{ 
@@ -146,27 +103,6 @@ const Home = () => {
           <div id="main_content" className="text-black relative z-10">
             {/* Avatar and Content Grid */}
             <div className="grid grid-cols-2 gap-4 relative">
-              {/* Mind Activity Dashboard - Left of Avatar (shows on hover) */}
-              <AnimatePresence>
-                {avatarHovered && (
-                  <motion.div 
-                    className="absolute left-[-400px] top-1/2 transform -translate-y-1/2 z-20 w-96"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.4 }}
-                  >
-                    <MindActivityDashboard 
-                      commitCounts={{
-                        ai: commitCounts.fulcrum || 0,
-                        coding: (commitCounts.cornea || 0) + (commitCounts.auditor || 0),
-                        movement: commitCounts.fulcrum || 0
-                      }}
-                    />
-                  </motion.div>
-                )}
-              </AnimatePresence>
-
               <motion.div 
                 id="avatar" 
                 ref={avatarRef}
@@ -181,8 +117,6 @@ const Home = () => {
                   delay: 0.4,
                   ease: scrollEffects.transitionTiming
                 }}
-                onMouseEnter={() => setAvatarHovered(true)}
-                onMouseLeave={() => setAvatarHovered(false)}
               >
                 <div className="relative flex items-center justify-center">
                   {/* Main Avatar */}

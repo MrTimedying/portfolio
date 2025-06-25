@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import NavMenu from '../components/NavMenu';
 import Footer from '../components/Footer';
-import AuthorSidebar from '../components/AuthorSidebar';
 import { sanityClient, urlFor } from '../sanityClient';
 import { PortableText } from '@portabletext/react';
 // We'll keep the marked import for now, but simplify the normal block serializer
 import { marked } from 'marked';
 import '../styles/blogPost.css'; // Import the new CSS file
+import MedicalBackground from '../components/MedicalBackground';
 
 const SinglePost = () => {
   const [post, setPost] = useState(null);
@@ -156,8 +156,9 @@ const SinglePost = () => {
       transition={{ duration: 0.5 }}
     >
       <NavMenu />
+      <MedicalBackground userActivity={'idle'} />
       <motion.main 
-        style={{ background: "#fffff8" }} 
+        style={{ background: "transparent" }} 
         className="max-w-3xl mt-20 mx-auto flex flex-col items-center justify-center min-h-[70vh] mb-24 px-4 sm:px-6 pb-12"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -189,8 +190,9 @@ const SinglePost = () => {
       transition={{ duration: 0.5 }}
     >
       <NavMenu />
+      <MedicalBackground userActivity={'idle'} />
       <motion.main 
-        style={{ background: "#fffff8" }} 
+        style={{ background: "transparent" }} 
         className="max-w-3xl mt-20 mx-auto flex flex-col items-center justify-center min-h-[70vh] mb-24 px-4 sm:px-6 pb-12"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -217,8 +219,9 @@ const SinglePost = () => {
       transition={{ duration: 0.5 }}
     >
       <NavMenu />
+      <MedicalBackground userActivity={'idle'} />
       <motion.main 
-        style={{ background: "#fffff8" }} 
+        style={{ background: "transparent" }} 
         className="max-w-3xl mt-20 mx-auto flex flex-col items-center justify-center min-h-[70vh] mb-24 px-4 sm:px-6 pb-12"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -245,23 +248,17 @@ const SinglePost = () => {
       transition={{ duration: 0.5 }}
     >
       <NavMenu />
+      <MedicalBackground userActivity={'idle'} />
       <motion.main 
-        style={{ background: "#fffff8" }} 
-        className="max-w-5xl mt-20 mx-auto flex flex-col md:flex-row items-start gap-8 mb-24 px-4 sm:px-6 pb-12"
+        style={{ background: "transparent" }} 
+        className="max-w-4xl mt-20 mx-auto flex flex-col items-start gap-8 mb-24 px-4 sm:px-6 pb-12"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.2 }}
       >
-        {/* Author Sidebar */}
-        <AuthorSidebar 
-          authorName={post.authorName} 
-          categories={post.categories}
-          tags={post.tags}
-        />
-
         {/* Article Content */}
         <motion.article 
-          className="flex-grow w-5/6 rounded-lg text-sm overflow-hidden p-6 md:p-8"
+          className="flex-grow w-full rounded-lg text-sm overflow-hidden p-6 md:p-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.4 }}
@@ -306,7 +303,21 @@ const SinglePost = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 1.0 }}
           >
-            <span>Published on {formatDate(post._createdAt)}</span>
+            <p>Published on {formatDate(post._createdAt)}</p>
+            <p className="mt-2">
+              <b>Author:</b> {
+                post.tags && Array.isArray(post.tags) && post.tags.includes('ai-generated') 
+                  ? (
+                    <Link 
+                      to="/blog/human-in-the-loop"
+                      className="text-amber-700 hover:text-amber-800 transition-colors duration-200 ml-1 hover:underline"
+                    >
+                      Self-aware Researcher
+                    </Link>
+                  )
+                  : (post.authorName || "Unknown Author")
+              }
+            </p>
           </motion.div>
           {post.mainImage && (
             <motion.img

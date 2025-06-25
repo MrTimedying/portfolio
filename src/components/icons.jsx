@@ -14,4 +14,74 @@ export function GithubFill(props) {
       </svg>
     )
   }
+
+export function ReactJs(props) {
+    return (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="-11.5 -10.23174 23 20.46348"
+        width="1em"
+        height="1em"
+        {...props}
+      >
+        <circle cx="0" cy="0" r="2.05" fill="currentColor"></circle>
+        <g stroke="currentColor" strokeWidth="1" fill="none">
+          <ellipse rx="11" ry="4.2"></ellipse>
+          <ellipse rx="11" ry="4.2" transform="rotate(60)"></ellipse>
+          <ellipse rx="11" ry="4.2" transform="rotate(120)"></ellipse>
+        </g>
+      </svg>
+    )
+  }
+
+export function Python(props) {
+    return (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        width="1em"
+        height="1em"
+        {...props}
+      >
+        <path
+          fill="currentColor"
+          d="M12.23,8.42C12.23,8.42,12.23,8.42,12.23,8.42C11.1,8.44,10.23,9.1,10.03,10.02C9.8,11.13,10.44,12.2,11.53,12.45C11.54,12.45,11.54,12.45,11.54,12.45C12.67,12.43,13.54,11.77,13.74,10.85C13.97,9.74,13.33,8.67,12.23,8.42M12.23,15.58C12.23,15.58,12.23,15.58,12.23,15.58C11.1,15.56,10.23,14.9,10.03,13.98C9.8,12.87,10.44,11.8,11.53,11.55C11.54,11.55,11.54,11.55,11.54,11.55C12.67,11.57,13.54,12.23,13.74,13.15C13.97,14.26,13.33,15.33,12.23,15.58M15,22H9V15.5H15V22M15,8.5H9V2H15V8.5Z"
+        ></path>
+      </svg>
+    )
+  }
+
+export function Tauri(props) {
+    return (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 256 256"
+        width="1em"
+        height="1em"
+        {...props}
+      >
+        <path
+          fill="currentColor"
+          d="M128 22.4a105.6 105.6 0 1 0 105.6 105.6A105.7 105.7 0 0 0 128 22.4Zm-32 32h64l-32 44.8-32-44.8Zm64 147.2H96l32-44.8 32 44.8Z"
+        ></path>
+      </svg>
+    )
+  }
+
+export function Electron(props) {
+    return (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        width="1em"
+        height="1em"
+        {...props}
+      >
+        <path
+          fill="currentColor"
+          d="M12,2A10,10,0,0,0,2,12A10,10,0,0,0,12,22A10,10,0,0,0,22,12A10,10,0,0,0,12,2M12,4.65A7.35,7.35,0,0,1,19.35,12A7.35,7.35,0,0,1,12,19.35A7.35,7.35,0,0,1,4.65,12A7.35,7.35,0,0,1,12,4.65M11.25,6V8.25H8.25V10.5H11.25V13.5H9.75L12,16.5L14.25,13.5H12.75V10.5H15.75V8.25H12.75V6H11.25Z"
+        ></path>
+      </svg>
+    )
+  }
   
